@@ -38,7 +38,7 @@ class Records(models.Model):
     email = models.EmailField()
     user_name = models.CharField(max_length = 20)
     visit_time = models.DateTimeField()
-    master_name = models.CharField(max_length = 20, default = 'Ann')
+    master_name = models.CharField(max_length = 20)
 
     class Meta():
         verbose_name = 'Запись'

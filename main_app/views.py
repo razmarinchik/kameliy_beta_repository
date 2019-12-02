@@ -17,20 +17,13 @@ def ServiceView(request):
     data = {'services':services}
     return render(request, 'main_app/services.html', data)
 
-def RecordFormView(request):
-    form = RecordForm(request.POST or None)
+def RecordFormView(request, master_id, time_id):
+    master = Master.objects.get(id = master_id)
+    time = master.free_time.get(id = time_id)
+    form = RecordForm(request.POST or None, initial = {'master_name': master.master_name,'visit_time': time.time.strftime("%Y-%m-%d %H:%M:%S") })#'visit_time':([('12','10'),('32','7'),])
     if form.is_valid():
         form.save()
-        name = form.cleaned_data['master_name']
-        time = form.cleaned_data['visit_time']
-        masters = Master.objects.all()
-        for master in masters:
-            if master.master_name == name:
-                for master_time in master.free_time.all():
-                    if master_time == time:
-                        master = Master.objects.filter(master_name=name)
-                        master.free_time.filter(time = time).update(free_or_not = False)
-
+        master.free_time.filter(id = time_id).delete()
         form = RecordForm()
 
     return render(request, 'main_app/record.html', {'form':form})

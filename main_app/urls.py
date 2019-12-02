@@ -4,7 +4,7 @@ from .views import MainPage, FindMaster, RecordFormView, ServiceView, MasterServ
 urlpatterns = [
     path('service/<int:service_id>/', MasterServiseView),
     path('service/', ServiceView, name = 'service_page'),
-    #path('record/<str:time>/', RecordFormView),
+    path('record/<int:master_id>/<int:time_id>/', RecordFormView),
     path('record/', RecordFormView, name = 'record_page'),
     path('masters/', FindMaster, name = 'masters_page'),
     path('', MainPage, name='main_page'),

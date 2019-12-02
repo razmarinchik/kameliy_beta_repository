@@ -10,8 +10,8 @@
     <h6 class="card-subtitle mb-2 text-muted">Возраст мастера {{master.age}}</h6>
     <p class="card-text">{{master.description}}</p>
     {%for time in master.free_time.all %}
-    {{time|time:"H"}}
-    <a href="#" class="btn btn-primary">{{time}}</a>
+
+    <a href= "/record/{{master.id}}/{{time.id}}" class="btn btn-primary">{{time.time|date:"d-m-Y"}}</a>
     {% endfor %}
   </div>
   </div>
