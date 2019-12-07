@@ -22,6 +22,7 @@ def RecordFormView(request, master_id, time_id):
     time = master.free_time.get(id = time_id)
     form = RecordForm(request.POST or None, initial = {'master_name': master.master_name,'visit_time': time.time.strftime("%Y-%m-%d %H:%M:%S") })#'visit_time':([('12','10'),('32','7'),])
     if form.is_valid():
+        print(time.time)
         form.save()
         master.free_time.remove(time)#.filter(id = time_id)
         form = RecordForm()
