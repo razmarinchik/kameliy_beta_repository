@@ -3,17 +3,42 @@
 Выбор мастера
 {% endblock %}
 {% block content %}
-  {%for master in masters %}
-  <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">{{master.master_name}}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Возраст мастера {{master.age}}</h6>
-    <p class="card-text">{{master.description}}</p>
-    {%for time in master.free_time.all %}
 
-    <a href= "/record/{{master.id}}/{{time.id}}" class="btn btn-primary">{{time.time|date:"d-m-Y"}}</a>
+<div class="cardes">
+  <div class="cardes">
+    <h1>h1 headline</h1>
+    <h2>h2 header</h2>
+  </div>
+  <div class="cardes">
+    <h1>h1 headline</h1>
+  </div>
+  <div class="cardes">
+    <h1>h1 headline</h1>
+  </div>
+</div>
+<div class="cardes">
+
+
+  {%for master in masters %}
+      <div class="master_card">
+        <h5 >{{master.master_name}}</h5>
+        <h6 >Возраст мастера {{master.age}}</h6>
+        <div class="description">
+          <p >{{master.description}}</p>
+        </div>
+        {%for time in master.free_time.all %}
+        <div class="inner_button">
+          <a href= "/record/{{master.id}}/{{time.id}}" class="knopka" type="button">{{time.time|date:"d-m-Y"}}</a>
+        </div>
+        {% endfor %}
+      </div>
+
+
+
     {% endfor %}
-  </div>
-  </div>
-  {% endfor %}
+</div>
+
+
+
+
 {% endblock %}
